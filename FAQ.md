@@ -18,3 +18,5 @@ io.cucumber.core.exception.CucumberException: No backends were found. Please mak
     <artifactId>cucumber-java</artifactId>
 </dependency>
 ```
+#### Q. Where did `javax.persistence.Entity` go?
+#### A. It was replaced by `jakarta.persistence.Entity`; in fact the whole `javax.persistence` package was replaced by `jakarta.persistence`
