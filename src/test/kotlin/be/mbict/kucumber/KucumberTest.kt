@@ -11,19 +11,15 @@ import org.junit.platform.suite.api.Suite
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.boot.test.context.SpringBootTest.WebEnvironment.RANDOM_PORT
+import org.springframework.test.context.ActiveProfiles
 
 @Suite
 @IncludeEngines("cucumber")
 @SelectClasspathResource("cucumber")
 @ConfigurationParameter(key = PLUGIN_PROPERTY_NAME, value = "pretty")
-class KucumberTest {
-
-    @Autowired private lateinit var basket: Basket
-
-    @BeforeEach
-    fun cleanUp() = basket.deleteAll()
-}
+class KucumberTest
 
 @CucumberContextConfiguration
 @SpringBootTest(webEnvironment = RANDOM_PORT)
+@ActiveProfiles("test")
 class KucumberBootstrap

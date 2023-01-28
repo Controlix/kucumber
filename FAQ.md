@@ -28,8 +28,8 @@ Configuration problem: @Configuration class 'Application' may not be final. Remo
 ```
 #### A. This happens after I add the 'kotlin-maven-plugin'
 The way to get rid of this is to
-
-either define the Application class as 'open'
-
-or configure the kotlin-maven-plugin to make all classes open as show on [Kotlin-allopen and Spring
-](https://www.baeldung.com/kotlin/allopen-spring "Baeldung")
+- either define the Application class as 'open'
+- or configure the kotlin-maven-plugin to make all classes open as show on [Kotlin-allopen and Spring](https://www.baeldung.com/kotlin/allopen-spring "Baeldung")
+#### Q. How does that magic jdbc url start the testcontainer?
+#### A. It uses a dedicated database driver to do this
+see [Cucumber & Testcontainer: a BDD perfect match](https://medium.com/javarevisited/cucumber-testcontainer-a-bdd-perfect-match-956cf62cdf47)
