@@ -23,16 +23,42 @@ class KucumberTest
 @SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
 @ActiveProfiles("test")
 object KucumberKotlinBootstrap {
+
+    init {
+        startContainer()
+    }
+
     @BeforeAll
     @JvmStatic
     fun startContainer() {
-        val mySql = MySQLContainer(DockerImageName.parse("mysql").withTag("8.0.32"))
+        val mySQLContainer = MySQLContainer(DockerImageName.parse("mysql").withTag("8.0.32"))
             .withDatabaseName("basket-db")
             .withUsername("obiwan")
             .withPassword("s3cr3t")
             .apply { start() }
 
-        println(mySql.jdbcUrl)
-        System.setProperty("spring.datasource.url", mySql.jdbcUrl)
+        println(mySQLContainer.jdbcUrl)
+        System.setProperty("spring.datasource.url", mySQLContainer.jdbcUrl)
+
+        println("""
+            =========================================================================================================
+            =========================================================================================================
+            =========================================================================================================
+            =========================================================================================================
+            
+            
+            
+            
+            Hi, I just started the containers!!!
+            
+            
+            
+            
+            
+            =========================================================================================================
+            =========================================================================================================
+            =========================================================================================================
+            =========================================================================================================
+        """.trimIndent())
     }
 }
