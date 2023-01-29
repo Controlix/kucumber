@@ -18,7 +18,7 @@ class MyKotlinTest {
 
     @Test
     fun testSomething() {
-        assertThat(basket.count()).isZero()
+        assertThat(basket.count()).isZero
         println(
             "\n\n\n" +
                     "=============================================================================================\n" +

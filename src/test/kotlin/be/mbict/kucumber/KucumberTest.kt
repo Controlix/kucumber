@@ -8,7 +8,6 @@ import org.junit.platform.suite.api.IncludeEngines
 import org.junit.platform.suite.api.SelectClasspathResource
 import org.junit.platform.suite.api.Suite
 import org.springframework.boot.test.context.SpringBootTest
-import org.springframework.boot.test.context.SpringBootTest.WebEnvironment
 import org.springframework.test.context.ActiveProfiles
 import org.testcontainers.containers.MySQLContainer
 import org.testcontainers.utility.DockerImageName
@@ -20,7 +19,7 @@ import org.testcontainers.utility.DockerImageName
 class KucumberTest
 
 @CucumberContextConfiguration
-@SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
+@SpringBootTest
 @ActiveProfiles("test")
 object KucumberKotlinBootstrap {
 
@@ -30,7 +29,10 @@ object KucumberKotlinBootstrap {
 
     @BeforeAll
     @JvmStatic
-    fun startContainer() {
+    fun start() {
+    }
+
+    private fun startContainer() {
         val mySQLContainer = MySQLContainer(DockerImageName.parse("mysql").withTag("8.0.32"))
             .withDatabaseName("basket-db")
             .withUsername("obiwan")
@@ -40,7 +42,8 @@ object KucumberKotlinBootstrap {
         println(mySQLContainer.jdbcUrl)
         System.setProperty("spring.datasource.url", mySQLContainer.jdbcUrl)
 
-        println("""
+        println(
+            """
             =========================================================================================================
             =========================================================================================================
             =========================================================================================================
@@ -59,6 +62,7 @@ object KucumberKotlinBootstrap {
             =========================================================================================================
             =========================================================================================================
             =========================================================================================================
-        """.trimIndent())
+        """.trimIndent()
+        )
     }
 }
